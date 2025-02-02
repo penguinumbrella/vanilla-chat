@@ -113,7 +113,7 @@ app.post("/api/chat", async (c) => {
   const messages = [...payload.messages];
 
   // Fetch and parse CSV data
-  const csvData = await fetch("https://your-storage-service-url/training_with_fuel_economy.csv")
+  const csvData = await fetch("https://drive.google.com/uc?export=download&id=15eU2i66oI6rMT7Mqf9cddD5Al1foFBBq")
     .then(response => response.text())
     .then(csvText => parse(csvText, { header: true }).data);
 
