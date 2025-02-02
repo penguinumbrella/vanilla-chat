@@ -3,6 +3,7 @@ import { streamText } from "hono/streaming";
 import { renderer } from "./renderer";
 import { EventSourceParserStream } from "eventsource-parser/stream";
 import { Ai } from "@cloudflare/workers-types";
+import { parse } from 'papaparse';
 
 type Bindings = {
   AI: Ai;
@@ -110,10 +111,25 @@ app.get("/", (c) => {
 app.post("/api/chat", async (c) => {
   const payload = await c.req.json();
   const messages = [...payload.messages];
+
+  // Fetch and parse CSV data
+  const csvData = await fetch("https://your-storage-service-url/training_with_fuel_economy.csv")
+    .then(response => response.text())
+    .then(csvText => parse(csvText, { header: true }).data);
+
+  // Integrate CSV data into the AI model's input
+  // This is a placeholder for how you might use the CSV data
+  const csvBasedMessage = {
+    role: "system",
+    content: `Based on the CSV data: ${JSON.stringify(csvData[0])}` // Example usage
+  };
+  messages.unshift(csvBasedMessage);
+
   // Prepend the systemMessage
   if (payload?.config?.systemMessage) {
     messages.unshift({ role: "system", content: payload.config.systemMessage });
   }
+
   //console.log("Model", payload.config.model);
   //console.log("Messages", JSON.stringify(messages));
   let eventSourceStream;
