@@ -7,9 +7,9 @@
     @apply text-left text-black w-full;
   }
   .message-assistant {
-    @apply bg-white p-4 rounded-lg text-white shadow mb-2 w-full;
+    @apply bg-chat-bubble p-4 rounded-lg text-black shadow mb-2 w-full;
   }
   .message-model {
-    @apply text-xs text-gray-800;
+    @apply text-xs text-gray-500;
   }
 }
