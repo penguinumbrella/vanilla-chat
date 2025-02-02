@@ -117,11 +117,10 @@ app.post("/api/chat", async (c) => {
     .then(response => response.text())
     .then(csvText => parse(csvText, { header: true }).data);
 
-  // Integrate CSV data into the AI model's input
-  // This is a placeholder for how you might use the CSV data
+  // Integrate all CSV data into the AI model's input
   const csvBasedMessage = {
     role: "system",
-    content: `Based on the CSV data: ${JSON.stringify(csvData[0])}` // Example usage
+    content: `Based on the CSV data: ${JSON.stringify(csvData)}` // Use all CSV data
   };
   messages.unshift(csvBasedMessage);
 
