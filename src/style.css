@@ -4,7 +4,7 @@
 
 @layer components {
   .message-user {
-    @apply text-left text-white w-full;
+    @apply text-left text-black w-full;
   }
   .message-assistant {
     @apply bg-white p-4 rounded-lg text-white shadow mb-2 w-full;
