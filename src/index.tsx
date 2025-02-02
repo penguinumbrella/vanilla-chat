@@ -121,7 +121,7 @@ app.post("/api/chat", async (c) => {
   // This is a placeholder for how you might use the CSV data
   const csvBasedMessage = {
     role: "system",
-    content: `Based on the CSV data: ${JSON.stringify(csvData[0])}` // Example usage
+    content: `Based on the CSV data: ${JSON.stringify(csvData)}` // Example usage
   };
   messages.unshift(csvBasedMessage);
 
